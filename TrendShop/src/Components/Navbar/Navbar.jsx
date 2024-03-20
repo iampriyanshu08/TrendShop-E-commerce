@@ -50,22 +50,22 @@ const Navbar = ({ cart, userName }) => {
               <div className="">
                 <ul className="flex flex-col text-2xl gap-10 absolute top-[73px] text-black h-screen w-full left-0 z-10 bg-yellow-600 items-center justify-center font-semibold">
                   <Link to="/">
-                    <li className="mt-5 hover:text-white cursor-pointer" onClick={()=>setisopen(!isopen)}>
+                    <li className="mt-5 text-white cursor-pointer" onClick={()=>setisopen(!isopen)}>
                       Home
                     </li>
                   </Link>
 
                   <Link to="/allproducts">
-                    <li className="mt-5 hover:text-white cursor-pointer" onClick={()=>setisopen(!isopen)}>
+                    <li className="mt-5 text-white cursor-pointer" onClick={()=>setisopen(!isopen)}>
                       All Products
                     </li>
                   </Link>
-                  <Link to="/about"><li className="mt-5 hover:text-white cursor-pointer" onClick={()=>setisopen(!isopen)}>
+                  <Link to="/about"><li className="mt-5 text-white cursor-pointer" onClick={()=>setisopen(!isopen)}>
                    About
                   </li>
                   </Link>
                   <Link to="/contact">
-                  <li className="mt-5 hover:text-white cursor-pointer" onClick={()=>setisopen(!isopen)}>
+                  <li className="mt-5 text-white cursor-pointer" onClick={()=>setisopen(!isopen)}>
                     Contact
                   </li></Link>
                 </ul>
