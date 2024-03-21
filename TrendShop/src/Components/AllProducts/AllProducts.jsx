@@ -4,6 +4,7 @@ import axios from "axios";
 import img2 from "../../assets/banner2.jpg";
 import { MdStarRate } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
+import AllProdSkeleton from "../AllProdSkeleton/AllProdSkeleton";
 
 const AllProducts = ({ addToCart }) => {
   const [allprods, setallprods] = useState([]);
@@ -109,10 +110,10 @@ const AllProducts = ({ addToCart }) => {
 
       {/* prods category  */}
 
-      <div className="bg-yellow-50 rounded-md mt-16 py-3 container mx-auto w-[80%]">
+      <div className="bg-yellow-50 rounded-md mt-16 py-3 mx-auto w-[85%]">
         <div className="flex flex-wrap gap-5 items-center justify-center my-5 ">
           <select
-            className="p-2"
+            className="p-2 focus:border-none"
             onChange={(e) => filterProds(e.target.value)}
           >
             <option className="bg-yellow-500">Filter by Category</option>
@@ -140,7 +141,7 @@ const AllProducts = ({ addToCart }) => {
               onChange={(e) => setsearchItem(e.target.value)}
               value={searchItem}
               name="q"
-              className="py-2 text-sm md:w-[300px] w-[150px] text-center focus:outline-none focus:bg-white focus:text-gray-900 pr-5 rounded-l-full"
+              className="py-2 text-sm md:w-[300px] w-[150px] text-center focus:border-none focus:bg-white focus:text-gray-900 pr-5 rounded-l-full"
               placeholder="Search item..."
               autoComplete="off"
             />
@@ -148,7 +149,7 @@ const AllProducts = ({ addToCart }) => {
             <button
                 onClick={handleSearchBtn}
                 type="submit"
-                className="p-2 focus:outline-none focus:shadow-outline bg-yellow-500 hover:bg-yellow-600 rounded-r-full  items-center inline-block "
+                className="p-2 focus:border-none  bg-yellow-500 hover:bg-yellow-600 rounded-r-full items-center justify-center inline-block "
               >
                 <IoMdSearch size={20} />
               </button>
@@ -164,14 +165,14 @@ const AllProducts = ({ addToCart }) => {
             value={minprice}
             placeholder=" Enter Min Price"
             onChange={(e) => setMinprice(e.target.value)}
-            className=" px-2 py-2 text-center"
+            className=" px-2 py-2 text-center focus:border-none"
           />
           <input
             type="number"
             value={maxprice}
             placeholder=" Enter Max Price"
             onChange={(e) => setMaxprice(e.target.value)}
-            className=" px-2 py-2 text-center "
+            className=" px-2 py-2 text-center focus:border-none"
           />
           <button
             onClick={handlePrice}
@@ -182,9 +183,7 @@ const AllProducts = ({ addToCart }) => {
         </div>
       </div>
 
-      {/* all products  */}
-
-      <section className=" body-font  text-center">
+      {!allprods.length ? (<AllProdSkeleton/>) : (<section className=" body-font  text-center">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap gap-10 justify-center">
             {allprods.map((prod) => (
@@ -200,29 +199,37 @@ const AllProducts = ({ addToCart }) => {
                   />
                 </Link>
                 <div className="mt-4">
-                  <h3 className="text-gray-500 text-sm tracking-widest title-font mb-1 font-semibold">
+                  <h3 className="text-gray-500 text-sm tracking-widest title-font mb-1 font-semibold text-left">
                     Title : {prod.title}
                   </h3>
-                  <h2 className="text-gray-500 title-font text-sm font-medium inline-flex items-center gap-1">
-                    Rating : {prod.rating}{" "}
-                    <span className=" text-green-600">
-                      {" "}
+                  <h2 className="text-gray-500 title-font text-sm font-medium  text-left ">
+                    Rating : {prod.rating}
+                    <span className=" text-green-600 inline-flex pl-1 absolute">
+                      
                       <MdStarRate size={20} />
                     </span>
                   </h2>
-                  <p className="mt-1 text-gray-500">Price : {prod.price} Rs.</p>
+                  <div className="flex justify-between sm:flex-row flex-col">
+
+                  <p className="mt-1 mb-2 text-gray-500 text-left font-bold text-xl ">Price : {prod.price} Rs.</p>
                   <button
-                    className="px-2 py-2 bg-yellow-500 text-white text-sm rounded my-3 font-medium hover:bg-yellow-600"
+                    className="px-2 py-2 bg-yellow-500 text-white text-sm rounded  font-medium hover:bg-yellow-600  "
                     onClick={() => addToCart(prod)}
-                  >
+                    >
                     Add to cart
                   </button>
+                    </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </section>)}
+      
+
+      {/* all products  */}
+
+      
     </>
   );
 };

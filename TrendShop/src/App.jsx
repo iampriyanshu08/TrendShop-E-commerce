@@ -32,9 +32,10 @@ const App = () => {
         item.id === prods.id ? { ...item, quantity: item.quantity + 1 } : item
       );
       setcart(updateCart);
-      toast.success("added to cart")
+      
     } else {
       setcart([...cart, { ...prods, quantity: 1 }]);
+      toast.success("added to cart")
     }
 
     console.log(cart);

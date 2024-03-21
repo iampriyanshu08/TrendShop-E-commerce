@@ -3,6 +3,9 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { MdStarRate } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import cartbg from "../../assets/cartbg.jpg";
+import CheckoutModal from "../../Components/CheckoutModal/CheckoutModal";
+import EmptyCart from "../../Components/EmptyCart/EmptyCart";
+
 
 const Cart = ({
   cart,
@@ -20,7 +23,10 @@ const Cart = ({
   const navigate = useNavigate()
   return (
     <>
-      <div className="relative">
+      {
+        cart.length === 0 ? (<EmptyCart/>) :(
+          <>
+          <div className="relative">
         <img
           src={cartbg}
           alt=""
@@ -197,14 +203,16 @@ const Cart = ({
                   <span>Total cost</span>
                   <span>{cart.length >= 1 ? shipCharge() : 0} Rs.</span>
                 </div>
-                <button className="bg-yellow-500 font-semibold hover:bg-yellow-600 py-3 text-sm text-white uppercase w-full">
-                  Checkout
-                </button>
+                
+                 <CheckoutModal/>
               </div>
             </div>
           </div>
         </div>
       </div>
+          </>
+        )
+      }
     </>
   );
 };
